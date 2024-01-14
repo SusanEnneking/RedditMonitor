@@ -18,12 +18,13 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-       
+        ViewData["MonitorStartTime"] = _monitorService.GetMonitorStartTime();
         return View();
     }
 
     public IActionResult Privacy()
     {
+
         return View();
     }
 

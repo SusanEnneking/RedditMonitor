@@ -5,8 +5,8 @@ using Reddit.Controllers.EventArgs;
 namespace Services;
 public class RedditMonitor : IRedditMonitor
 {
-
-    static RedditMonitor(){
+    readonly DateTime _monitorStartTime;
+    public RedditMonitor(){
         DotNetEnv.Env.Load("../.env");
         var appId = Environment.GetEnvironmentVariable("REDDIT_APPID");
         var appSecret = Environment.GetEnvironmentVariable("REDDIT_SECRET");
@@ -16,14 +16,16 @@ public class RedditMonitor : IRedditMonitor
                     refreshToken: refreshToken);
         Subreddit sub = redditClient.Subreddit("AskReddit").About();
         sub.Posts.NewUpdated += C_NewPostsUpdated;
-        MonitorStartTime = DateTime.Now;
+        _monitorStartTime = DateTime.Now;
         sub.Posts.MonitorNew();
     }
 
-    public static DateTime MonitorStartTime;
+    public DateTime GetMonitorStartTime(){
+        return _monitorStartTime;
+    }
     // Using monitor example from Reddit.DOTNET examples
     // https://github.com/sirkris/Reddit.NET/blob/master/src/Example/Program.cs
-    public static void C_NewPostsUpdated(object sender, PostsUpdateEventArgs e)
+    public void C_NewPostsUpdated(object sender, PostsUpdateEventArgs e)
     {
         foreach (Post post in e.Added)
         {
