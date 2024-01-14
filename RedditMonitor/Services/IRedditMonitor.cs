@@ -15,5 +15,7 @@ public interface IRedditMonitor
         }
     }
     public abstract DateTime GetMonitorStartTime();
+    public abstract int GetPostCount();
+    public abstract string? GetSubredditName();
 
 }

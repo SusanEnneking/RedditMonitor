@@ -19,6 +19,8 @@ public class HomeController : Controller
     public IActionResult Index()
     {
         ViewData["MonitorStartTime"] = _monitorService.GetMonitorStartTime();
+        ViewData["PostCount"] = _monitorService.GetPostCount();
+        ViewData["SubRedditThread"] = _monitorService.GetSubredditName();
         return View();
     }
 
