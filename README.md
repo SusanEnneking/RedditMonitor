@@ -9,4 +9,7 @@ This project is a little .net Core exercise that monitors a subreddit topic and 
 
 ## Nuget Packages ##
 [Reddit.NET](https://github.com/sirkris/Reddit.NET)\
-[DotNetEnv](https://www.nuget.org/packages/DotNetEnv/1.2.0)
+:bulb: Happy to have found Reddit.NET as most of the work is being done by that package.\
+\
+[DotNetEnv](https://www.nuget.org/packages/DotNetEnv/1.2.0)\
+:warning: The package comments indicate .env should not be used for production deploys. This code will never make it to a production server, but fair warning!
