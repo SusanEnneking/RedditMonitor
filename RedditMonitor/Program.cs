@@ -1,6 +1,10 @@
-var builder = WebApplication.CreateBuilder(args);
+using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
+using Services;
 
+var builder = WebApplication.CreateBuilder(args);
+var redditMonitor = new Services.RedditMonitor();
 // Add services to the container.
+builder.Services.AddSingleton<IRedditMonitor>(redditMonitor);
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

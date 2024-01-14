@@ -1,17 +1,18 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using RedditMonitor.Models;
+using Services;
 
 namespace RedditMonitor.Controllers;
 
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
-    private Services.RedditMonitor _monitorService;
+    private IRedditMonitor _monitorService;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(ILogger<HomeController> logger, IRedditMonitor monitor)
     {
-         _monitorService = new Services.RedditMonitor();
+         _monitorService = monitor;
         _logger = logger;
     }
 
