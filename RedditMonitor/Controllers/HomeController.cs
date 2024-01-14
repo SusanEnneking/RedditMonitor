@@ -1,22 +1,23 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using RedditMonitor.Models;
-using RedditMonitor.Services;
 
 namespace RedditMonitor.Controllers;
 
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
+    private Services.RedditMonitor _monitorService;
 
     public HomeController(ILogger<HomeController> logger)
     {
+         _monitorService = new Services.RedditMonitor();
         _logger = logger;
     }
 
     public IActionResult Index()
     {
-        var redditMontiorService = new Services.RedditMonitor();
+       
         return View();
     }
 
