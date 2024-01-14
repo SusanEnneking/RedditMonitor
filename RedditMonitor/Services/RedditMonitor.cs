@@ -37,6 +37,15 @@ public class RedditMonitor : IRedditMonitor
     public string? GetSubredditName(){
         return _subredditName;
     }
+
+    public string? GetUserWithMostPosts(){
+        return postsThisRun
+            .GroupBy(post => post.Author)
+            .Select(post => new { Author = post.Key, Count = post.Count() })
+            .OrderByDescending(post => post.Count)
+            .Select(post => post.Author)
+            .FirstOrDefault();
+    }
     // Using monitor example from Reddit.DOTNET examples
     // https://github.com/sirkris/Reddit.NET/blob/master/src/Example/Program.cs
     public void C_NewPostsUpdated(object sender, PostsUpdateEventArgs e)

@@ -21,6 +21,7 @@ public class HomeController : Controller
         ViewData["MonitorStartTime"] = _monitorService.GetMonitorStartTime();
         ViewData["PostCount"] = _monitorService.GetPostCount();
         ViewData["SubRedditThread"] = _monitorService.GetSubredditName();
+        ViewData["UserWithMostPosts"] = _monitorService.GetUserWithMostPosts();
         return View();
     }
 
