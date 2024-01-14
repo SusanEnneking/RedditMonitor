@@ -26,7 +26,6 @@ public class HomeController : Controller
         ViewData["MostUpvotedPost"] = postWithMostVotes?.Title;
         ViewData["MostUpvotedPostAuthor"] = postWithMostVotes?.Author;
         ViewData["MostUpvotedPostCount"] = postWithMostVotes?.UpVotes;
-
         return View();
     }
 

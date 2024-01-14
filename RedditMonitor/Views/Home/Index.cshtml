@@ -1,5 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    var infoStyle = ((int)ViewData["PostCount"] == 0)?"display: none;": "";
+
 }
 
 <div class="text-center">
@@ -7,9 +9,11 @@
     <p>For More information about this project see <a href="https://github.com/SusanEnneking/RedditMonitor">this github project</a>.</p>
     <p>Monitoring SubReddit, <strong>@ViewData["SubRedditThread"]</strong>.  Start Time: @ViewData["MonitorStartTime"]</p>
     <p>PostCount: <strong>@ViewData["PostCount"]</strong></p>
-    <p>User With the Most Posts: <strong>@ViewData["UserWithMostPosts"]</strong> </p>
-    <p>Most UpvotedPost Title: <strong>@ViewData["MostUpvotedPost"]</strong></p>
-    <p>Most UpvotedPost Author: <strong>@ViewData["MostUpvotedPostAuthor"]</strong></p>
-    <p>Most UpvotedPost Count: <strong>@ViewData["MostUpvotedPostCount"]</strong></p>
+    <div style="@infoStyle">
+        <p>User With the Most Posts: <strong>@ViewData["UserWithMostPosts"]</strong> </p>
+        <p>Most UpvotedPost Title: <strong>@ViewData["MostUpvotedPost"]</strong></p>
+        <p>Most UpvotedPost Author: <strong>@ViewData["MostUpvotedPostAuthor"]</strong></p>
+        <p>Most UpvotedPost Count: <strong>@ViewData["MostUpvotedPostCount"]</strong></p>
+    </div>
 
 </div>
