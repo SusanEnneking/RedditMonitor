@@ -22,6 +22,11 @@ public class HomeController : Controller
         ViewData["PostCount"] = _monitorService.GetPostCount();
         ViewData["SubRedditThread"] = _monitorService.GetSubredditName();
         ViewData["UserWithMostPosts"] = _monitorService.GetUserWithMostPosts();
+        var postWithMostVotes = _monitorService.GetPostWithMostVotes();
+        ViewData["MostUpvotedPost"] = postWithMostVotes?.Title;
+        ViewData["MostUpvotedPostAuthor"] = postWithMostVotes?.Author;
+        ViewData["MostUpvotedPostCount"] = postWithMostVotes?.UpVotes;
+
         return View();
     }
 

@@ -18,5 +18,6 @@ public interface IRedditMonitor
     public abstract int GetPostCount();
     public abstract string? GetSubredditName();
     public abstract string? GetUserWithMostPosts();
+    public abstract Post? GetPostWithMostVotes();
 
 }

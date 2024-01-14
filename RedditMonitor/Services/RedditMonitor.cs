@@ -46,6 +46,12 @@ public class RedditMonitor : IRedditMonitor
             .Select(post => post.Author)
             .FirstOrDefault();
     }
+
+    public Post? GetPostWithMostVotes(){
+        return postsThisRun
+            .OrderByDescending(post => post.UpVotes)
+            .FirstOrDefault();
+    }
     // Using monitor example from Reddit.DOTNET examples
     // https://github.com/sirkris/Reddit.NET/blob/master/src/Example/Program.cs
     public void C_NewPostsUpdated(object sender, PostsUpdateEventArgs e)
