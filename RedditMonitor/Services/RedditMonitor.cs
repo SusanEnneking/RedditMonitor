@@ -1,4 +1,3 @@
-using System.Collections;
 using Reddit;
 using Reddit.Controllers;
 using Reddit.Controllers.EventArgs;
@@ -10,19 +9,12 @@ public class RedditMonitor : IRedditMonitor
     readonly string? _subredditName;
     ICollection<Post> postsThisRun;
 
-    public RedditMonitor(){
-        DotNetEnv.Env.Load("../.env");
-        var appId = Environment.GetEnvironmentVariable("REDDIT_APPID");
-        var appSecret = Environment.GetEnvironmentVariable("REDDIT_SECRET");
-        var refreshToken = Environment.GetEnvironmentVariable("REDDIT_REFRESH_TOKEN");
-        var redditClient = new RedditClient(appId: appId, 
-                    appSecret: appSecret, 
-                    refreshToken: refreshToken);
-        _subredditName = Environment.GetEnvironmentVariable("REDDIT_SUBREDDIT");
+    public RedditMonitor(RedditClient redditClient, string subredditName){
         Subreddit sub = redditClient.Subreddit(_subredditName).About();
         sub.Posts.NewUpdated += C_NewPostsUpdated;
         postsThisRun = new List<Post>();
         _monitorStartTime = DateTime.Now;
+        _subredditName = subredditName;
         sub.Posts.MonitorNew();
     }
 

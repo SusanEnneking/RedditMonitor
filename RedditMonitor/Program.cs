@@ -1,8 +1,17 @@
-using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
+using Reddit;
+using Reddit.Things;
 using Services;
 
 var builder = WebApplication.CreateBuilder(args);
-var redditMonitor = new Services.RedditMonitor();
+DotNetEnv.Env.Load("../.env");
+var appId = Environment.GetEnvironmentVariable("REDDIT_APPID");
+var appSecret = Environment.GetEnvironmentVariable("REDDIT_SECRET");
+var refreshToken = Environment.GetEnvironmentVariable("REDDIT_REFRESH_TOKEN");
+var redditClient = new RedditClient(appId: appId, 
+            appSecret: appSecret, 
+            refreshToken: refreshToken);
+var subredditName = Environment.GetEnvironmentVariable("REDDIT_SUBREDDIT");
+var redditMonitor = new Services.RedditMonitor(redditClient, subredditName);
 // Add services to the container.
 builder.Services.AddSingleton<IRedditMonitor>(redditMonitor);
 builder.Services.AddControllersWithViews();
