@@ -1,10 +1,10 @@
 using Reddit.Controllers;
 
-namespace Services;
-public class RedditMonitor : IRedditMonitor
+namespace RedditMonitor.Services;
+public class Monitor : IMonitor
 {
     IRedditWrapper _redditWrapper;
-    public RedditMonitor(IRedditWrapper redditWrapper){
+    public Monitor(IRedditWrapper redditWrapper){
         _redditWrapper = redditWrapper;
         _redditWrapper.StartMonitoring();
     }

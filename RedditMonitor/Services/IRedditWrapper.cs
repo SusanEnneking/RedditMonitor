@@ -2,7 +2,7 @@ using Reddit;
 using Reddit.Controllers;
 using Reddit.Controllers.EventArgs;
 
-namespace Services;
+namespace RedditMonitor.Services;
 public interface IRedditWrapper
 {
     public abstract void C_NewPostsUpdated(object sender, PostsUpdateEventArgs e);

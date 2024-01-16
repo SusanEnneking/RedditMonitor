@@ -2,8 +2,8 @@ using Reddit;
 using Reddit.Controllers;
 using Reddit.Controllers.EventArgs;
 
-namespace Services;
-public interface IRedditMonitor
+namespace RedditMonitor.Services;
+public interface IMonitor
 {
 
     public abstract DateTime GetMonitorStartTime();

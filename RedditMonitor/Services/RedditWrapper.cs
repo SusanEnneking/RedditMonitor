@@ -2,7 +2,7 @@ using Reddit;
 using Reddit.Controllers;
 using Reddit.Controllers.EventArgs;
 
-namespace Services;
+namespace RedditMonitor.Services;
 
 public class RedditWrapper : IRedditWrapper
 {
