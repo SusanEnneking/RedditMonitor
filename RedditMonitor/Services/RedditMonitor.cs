@@ -10,11 +10,11 @@ public class RedditMonitor : IRedditMonitor
     ICollection<Post> postsThisRun;
 
     public RedditMonitor(RedditClient redditClient, string subredditName){
+        _subredditName = subredditName;
         Subreddit sub = redditClient.Subreddit(_subredditName).About();
         sub.Posts.NewUpdated += C_NewPostsUpdated;
         postsThisRun = new List<Post>();
         _monitorStartTime = DateTime.Now;
-        _subredditName = subredditName;
         sub.Posts.MonitorNew();
     }
 
