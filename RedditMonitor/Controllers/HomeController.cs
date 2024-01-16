@@ -18,6 +18,8 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+        // Refreshes page data every 5 seconds.  Magic.
+        this.HttpContext.Response.Headers.Add( "refresh", "5; url=" + Url.Action("index") );
         ViewData["MonitorStartTime"] = _monitorService.GetMonitorStartTime();
         ViewData["PostCount"] = _monitorService.GetPostCount();
         ViewData["SubRedditThread"] = _monitorService.GetSubredditName();
