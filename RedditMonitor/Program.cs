@@ -7,11 +7,14 @@ DotNetEnv.Env.Load("../.env");
 var appId = Environment.GetEnvironmentVariable("REDDIT_APPID");
 var appSecret = Environment.GetEnvironmentVariable("REDDIT_SECRET");
 var refreshToken = Environment.GetEnvironmentVariable("REDDIT_REFRESH_TOKEN");
-var redditClient = new RedditClient(appId: appId, 
-            appSecret: appSecret, 
-            refreshToken: refreshToken);
 var subredditName = Environment.GetEnvironmentVariable("REDDIT_SUBREDDIT");
-var redditMonitor = new Services.RedditMonitor(redditClient, subredditName);
+var redditWrapper = new Services.RedditWrapper(
+    appId??string.Empty, 
+    appSecret??string.Empty, 
+    refreshToken??string.Empty, 
+    subredditName??string.Empty
+);
+var redditMonitor = new Services.RedditMonitor(redditWrapper);
 // Add services to the container.
 builder.Services.AddSingleton<IRedditMonitor>(redditMonitor);
 builder.Services.AddControllersWithViews();
